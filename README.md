@@ -21,14 +21,15 @@ Add a cron job like this:
 0 23 * * 1-5 /usr/local/bin/cf_backup /mnt/path/to/your/archive | logger -t cf_backup
 ```
 
-This will schedule it for 11pm every weekday and pipe the logs to syslog.  You can view the logs later with journalctl -t cf_backup.
+This will schedule it for 11pm every weekday and pipe the logs to syslog.  You can view the logs later with `journalctl -t cf_backup`.
 
 If you need to talk to a remote database, configure options in `~/.my.cnf` e.g.
 ```
+[client]
 protocol=tcp
-host=1.2.3.4
-user=root
-pass=password
+host=
+user=
+pass=
 ```
 
 ### Usage
