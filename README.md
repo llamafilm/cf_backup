@@ -1,5 +1,7 @@
 A tool to backup Colorfront project databases.  Not affiliated with Colorfront.
 
+[![main](https://github.com/llamafilm/cf_backup/actions/workflows/main.yml/badge.svg)](https://github.com/llamafilm/cf_backup/actions/workflows/main.yml)
+
 ### What it does
 1. Query the SQL database to find out which projects have been udpated since the last backup
 2. Dump those schemas with `mysqldump`
