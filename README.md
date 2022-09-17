@@ -53,8 +53,6 @@ optional arguments:
   --mysql MYSQL, -m MYSQL
                         path to mysql binary; search PATH if not provided
   --verbose, -v         print extra debugging info
-
-© 2020 Elliott Balsley.  All rights reserved.
 ```
 
 ### Requirements

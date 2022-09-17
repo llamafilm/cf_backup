@@ -71,8 +71,7 @@ def draw_table(need_backup):
 def parse_args():
     parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
         description="""Backup Colorfront projects which have changed since last time.  MySQL and PHP scripts will be archived to a compressed tarball. Example usage piped to CentOS syslog: 
-        ./cf_backup /mnt/archive/colorfront/ | logger -t cf_backup""",
-        epilog="© 2020 Elliott Balsley.  All rights reserved.")
+        ./cf_backup /mnt/archive/colorfront/ | logger -t cf_backup""")
     parser.add_argument('output', help='directory to save the backups')
     parser.add_argument('--version', help='prints application version', action='version', version='%(prog)s version ' + _version.version)
     parser.add_argument('--webroot', '-w', help='location of Apache webroot directory (htdocs)', default='/var/www/html')
