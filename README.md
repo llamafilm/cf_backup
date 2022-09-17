@@ -29,7 +29,33 @@ user=root
 pass=password
 ```
 
+### Usage
+Documentation is self-contained with the `-help` option:
+```
+usage: cf_backup.py [-h] [--version] [--webroot WEBROOT] [--mysqldump MYSQLDUMP] [--mysql MYSQL] [--verbose] output
+
+Backup Colorfront projects which have changed since last time.  MySQL and PHP scripts will be archived to a compressed tarball. Example usage piped to CentOS syslog: 
+        ./cf_backup /mnt/archive/colorfront/ | logger -t cf_backup
+
+positional arguments:
+  output                directory to save the backups
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --version             prints application version
+  --webroot WEBROOT, -w WEBROOT
+                        location of Apache webroot directory (htdocs)
+  --mysqldump MYSQLDUMP, -d MYSQLDUMP
+                        path to mysqldump binary; search PATH if not provided
+  --mysql MYSQL, -m MYSQL
+                        path to mysql binary; search PATH if not provided
+  --verbose, -v         print extra debugging info
+
+© 2020 Elliott Balsley.  All rights reserved.
+```
+
 ### Requirements
-MySQL 5.7 or similar version (MariaDB 10.3, etc) binaries available in PATH
-Python 3.5+
+MySQL 5.7 or similar version (MariaDB 10.3, etc) binaries available in PATH  
+Python 3.5+  
 Read access to Apache webroot. e.g. `/var/www/html`
+Regular database schema from Colorfront OSD/ExD
