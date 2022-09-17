@@ -1,0 +1,51 @@
+name: main
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    services:
+      mariadb:
+        image: mariadb:10.3
+        env:
+          MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: yes
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      # Use TCP connection instead of local socket
+      - name: Configure DB connection
+        run: |
+          sudo apt install mariadb-client-10.3
+          echo -e "[client]\\nprotocol=tcp" >> ~/.my.cnf
+      
+      - name: Build binary from spec
+        run: |
+          pip install pyinstaller
+          pyinstaller src/cf_backup.spec
+          mv dist/cf_backup* dist/cf_backup
+
+      - name: Initialize database with test data
+        run: |
+          mysql -uroot < test/init.sql
+          sudo mkdir -p /var/www/html/project1 /var/www/html/project2
+          
+      - name: Run backup
+        run: |
+          ./dist/cf_backup .
+        
+      - name: Modify a project
+        run: |
+          sleep 5
+          mysql -uroot -e 'INSERT INTO project2.grades (`Group`, `UniqueID`, `Version`, `Hidden`, `TimeStamp`, `Grade`) VALUES ("timeline", "614A60EA1E670002", 4, 0, "2022-02-10 21:31:12", "<cut></cut>")'
+
+      - name: Run backup again
+        run: |
+          ./dist/cf_backup .
