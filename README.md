@@ -14,8 +14,8 @@ Optional: Build a binary with PyInstaller to make Python interpreter self-contai
 pyinstaller cf_backup.spec
 ```
 
-The binary will be generated with git commit number.  Rename it to simply `cf_backup` and copy to a reasonable location such as `/usr/local/bin`.
-Add a cron job like this:
+If you cloned the git repo, the binary will be generated with git commit number.  Rename it to simply `cf_backup` and copy to a reasonable location such as `/usr/local/bin`.
+Assuming you are running on linux, add a cron job like this:
 
 ```
 0 23 * * 1-5 /usr/local/bin/cf_backup /mnt/path/to/your/archive | logger -t cf_backup
@@ -23,7 +23,7 @@ Add a cron job like this:
 
 This will schedule it for 11pm every weekday and pipe the logs to syslog.  You can view the logs later with `journalctl -t cf_backup`.
 
-If you need to talk to a remote database, configure options in `~/.my.cnf` e.g.
+Advanced option: If your SQL database is running on a different host than this code, configure options in `~/.my.cnf` e.g.
 ```
 [client]
 protocol=tcp
