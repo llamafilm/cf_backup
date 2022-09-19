@@ -5,7 +5,7 @@ A tool to backup Colorfront project databases.  Not affiliated with Colorfront.
 ### What it does
 1. Query the SQL database to find out which projects have been udpated since the last backup
 2. Dump those schemas with `mysqldump`
-3. Copy the SQL dump along with htdocs into a compressed tarball and label it by date.
+3. Copy the SQL dump along with the project's PHP scripts into a compressed tarball and label it by date.
 
 ### Installation
 Optional: Build a binary with PyInstaller to make Python interpreter self-contained.
@@ -56,7 +56,7 @@ optional arguments:
 ```
 
 ### Requirements
-MySQL 5.7 or similar version (MariaDB 10.3, etc) binaries available in PATH  
-Python 3.5+  
-Read access to Apache webroot. e.g. `/var/www/html`
-Regular database schema from Colorfront OSD/ExD
+- MySQL 5.7 or similar version (MariaDB 10.3, etc) binaries available in PATH
+- Python 3.5+
+- Read access to Apache webroot. e.g. `/var/www/html`
+- Regular database schema from Colorfront OSD/ExD
